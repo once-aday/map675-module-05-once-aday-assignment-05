@@ -143,4 +143,6 @@ Earlier this week I was experimenting with the mapbox iOS SDK and was able to ge
 `npx create-react-app sole-geology`
 `npm install mapbox-gl`
 
-I was able to take the create-react-app template and merge in some of the code from the "basic" example from the mapbox react examples repository. A simple map with a zoom control is now present with the other create-react app homepage boilerplate. The Map appears to display on top of the start UI that came with create-react app.
+I was able to take the create-react-app template and merge in some of the code from the "basic" example from the mapbox react examples repository.
+
+ A simple map with a zoom control is now present with the other create-react app homepage boilerplate. The Map appears to display on top of the starter UI that came with create-react app.
