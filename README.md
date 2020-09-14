@@ -117,16 +117,30 @@ The optionsfield.js component returns a togglebox interface with connections to 
 
 Note: The end of optionsfield.js has a `export default Optionsfield;` line that seems to be pretty standard for each unique component file.
 
-So all in all the code is fairly complex but the components are fairly self contained and modular.
+So all in all the code is complex but the components are fairly self contained and modular.
 
 The Legend.js component is also dynamically populated and styled. It takes the active option data and renders it on the map:
 `<Legend active={active} stops={active.stops} />`
 
 
-<h3>Data overlay example (with redux)</h3>
+<h3>React powered tooltip</h3>
 
 
 So are the App.js and Map.js calls to render the map.
 
 App.js
 Map.js
+
+<h3> Create React App - Sole Geology</h3>
+
+I am going to try taking what I learned from the mapbox examples above and create an app to display Oregon Geology in a React app, using the "create react-app" starter from:
+
+https://reactjs.org/docs/create-a-new-react-app.html#create-react-app
+
+Earlier this week I was experimenting with the mapbox iOS SDK and was able to get a basic geologic map and tap on feature functionality working on my iPhone. Here I'll try to replicate and improve upon that experience in React.
+
+<h4>Initial Setup</h4>
+`npx create-react-app sole-geology`
+`npm install mapbox-gl`
+
+I was able to take the create-react-app template and merge in some of the code from the "basic" example from the mapbox react examples repository. A simple map with a zoom control is now present with the other create-react app homepage boilerplate. The Map appears to display on top of the start UI that came with create-react app.
