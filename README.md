@@ -119,6 +119,10 @@ Note: The end of optionsfield.js has a `export default Optionsfield;` line that 
 
 So all in all the code is fairly complex but the components are fairly self contained and modular.
 
+The Legend.js component is also dynamically populated and styled. It takes the active option data and renders it on the map:
+`<Legend active={active} stops={active.stops} />`
+
+
 <h3>Data overlay example (with redux)</h3>
 
 
