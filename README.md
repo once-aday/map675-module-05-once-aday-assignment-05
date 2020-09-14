@@ -108,8 +108,8 @@ Optionsfield.js is similarly structured as Map.js. It has a const `const Options
         options={options}
         property={active.property}
         changeState={changeState}
-      />
-      ```
+        />
+  ```
 
 In this case the optionsField is passed the current properties of the map layer (the state) and can execute the ChangeState function/code from within itself.
 
