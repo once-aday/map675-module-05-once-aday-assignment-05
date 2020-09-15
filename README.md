@@ -131,7 +131,7 @@ So are the App.js and Map.js calls to render the map.
 App.js
 Map.js
 
-<h3> Create React App - Sole Geology</h3>
+<h2> Create React App - Sole Geology</h2>
 
 I am going to try taking what I learned from the mapbox examples above and create an app to display Oregon Geology in a React app, using the "create react-app" starter from:
 
@@ -146,3 +146,31 @@ Earlier this week I was experimenting with the mapbox iOS SDK and was able to ge
 I was able to take the create-react-app template and merge in some of the code from the "basic" example from the mapbox react examples repository.
 
  A simple map with a zoom control is now present with the other create-react app homepage boilerplate. The Map appears to display on top of the starter UI that came with create-react app.
+
+
+Add Geo-locate controls
+`map.addControl(new mapboxgl.GeolocateControl(), 'top-left')`
+
+
+Note: Official USGS Geology color guide + Other color resources:
+https://pubs.usgs.gov/tm/2005/11B01/05tm11b01.html
+https://www.oregongeology.org/geologicmap/geologic-map-of-Oregon-legend.pdf
+https://www.oregongeology.org/pubs/dds/p-OGDC-6.htm
+
+<h3>position geology under roads on basemap</h3>
+
+I can specify the lowest symbol layer in the mapbox style when I add the geology layer, this will position the geology layer right below that.
+
+```
+map.addLayer(
+  {
+    id: 'geology-layer',
+    type: 'fill',
+    source: 'geology'
+  },
+  'tunnel-street-minor-low');
+  ```
+https://docs.mapbox.com/mapbox-gl-js/api/map/#map#addlayer
+
+Note: It is also possible to do this dynamically:
+https://docs.mapbox.com/mapbox-gl-js/example/geojson-layer-in-stack/

@@ -1,28 +1,66 @@
 import React, { useRef, useEffect, useState } from 'react';
 import mapboxgl from 'mapbox-gl';
 import './Map.css';
+import data from './data/all_geology_num.json';
 
 mapboxgl.accessToken =
-  'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4M29iazA2Z2gycXA4N2pmbDZmangifQ.-g_vE53SD2WrJ6tFX7QHmA';
+  'pk.eyJ1Ijoicm9jay1vbiIsImEiOiJjazdmamdqM2swM2tiM2RzMTVzZHo0azE4In0.R7p1gm6-ACCcAzC68BfdXw';
 
 const Map = () => {
   const mapContainerRef = useRef(null);
 
-  const [lng, setLng] = useState(5);
-  const [lat, setLat] = useState(34);
-  const [zoom, setZoom] = useState(1.5);
+  const [lng, setLng] = useState(-124.09809);
+  const [lat, setLat] = useState(42.59516);
+  const [zoom, setZoom] = useState(7);
 
   // Initialize map when component mounts
   useEffect(() => {
     const map = new mapboxgl.Map({
       container: mapContainerRef.current,
-      style: 'mapbox://styles/mapbox/streets-v11',
+      style: 'mapbox://styles/rock-on/ckeuqci31017519qsm5xlcmyo',
       center: [lng, lat],
       zoom: zoom
     });
-
+    console.log(data)
     // Add navigation control (the +/- zoom buttons)
     map.addControl(new mapboxgl.NavigationControl(), 'top-right');
+    map.addControl(new mapboxgl.GeolocateControl(), 'top-left')
+
+    // var layers = map.getStyle().layers;
+    //   // Find the index of the first symbol layer in the map style
+    //   var firstSymbolId;
+    //   for (var i = 0; i < layers.length; i++) {
+    //     if (layers[i].type === 'symbol') {
+    //       firstSymbolId = layers[i].id;
+    //       break;
+    //     }
+    //   }
+
+    let stops = [
+        [0, '#fbff00'],
+        [26, '#ff4f00'],
+        [52, '#0083ff']
+      ]
+    map.on('load', () => {
+      map.addSource('geology', {
+        type: 'geojson',
+        data
+      });
+      map.addLayer(
+        {
+          id: 'geology-layer',
+          type: 'fill',
+          source: 'geology'
+        },
+        'tunnel-street-minor-low');
+
+      map.setPaintProperty('geology-layer', 'fill-color', {
+        property: "color",
+        stops: stops
+      });
+
+    });
+
 
     // Clean up on unmount
     return () => map.remove();
