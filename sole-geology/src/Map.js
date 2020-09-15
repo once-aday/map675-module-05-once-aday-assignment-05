@@ -1,5 +1,8 @@
 import React, { useRef, useEffect, useState } from 'react';
 import mapboxgl from 'mapbox-gl';
+import { MapboxGradientBoxControl, MapboxInfoBoxControl } from "mapbox-gl-infobox";
+import "mapbox-gl-infobox/styles.css";
+
 import './Map.css';
 import data from './data/all_geology_num.json';
 
@@ -26,6 +29,15 @@ const Map = () => {
     map.addControl(new mapboxgl.NavigationControl(), 'top-right');
     map.addControl(new mapboxgl.GeolocateControl(), 'top-left')
 
+    const layerId = "geology-layer";
+    const formatter = properties => properties ? `<b>Name:</b> ${properties['G_ROCK_TYP']}` : '';
+    const infoboxOptions: MapboxInfoBoxOptions = {
+        layerId,
+        formatter
+    };
+    map.addControl(new MapboxInfoBoxControl(infoboxOptions));
+    // map.addControl(new MapboxInfoBoxControl());
+    // map.addControl(new MapboxGradientBoxControl());
     // var layers = map.getStyle().layers;
     //   // Find the index of the first symbol layer in the map style
     //   var firstSymbolId;

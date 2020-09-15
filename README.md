@@ -174,3 +174,21 @@ https://docs.mapbox.com/mapbox-gl-js/api/map/#map#addlayer
 
 Note: It is also possible to do this dynamically:
 https://docs.mapbox.com/mapbox-gl-js/example/geojson-layer-in-stack/
+
+<h3> Implement custom package Info-box</h3>
+
+https://github.com/el/infobox-control
+
+The info box package successfully works when I set it up like so:
+
+```
+const layerId = "geology-layer";
+const formatter = properties => properties ? `<b>Name:</b> ${properties['G_ROCK_TYP']}` : '';
+const infoboxOptions: MapboxInfoBoxOptions = {
+    layerId,
+    formatter
+};
+map.addControl(new MapboxInfoBoxControl(infoboxOptions));
+```
+
+A react project was the ideal application to utilize a package like infobox-control. It basically does what I want but the styling is defintely not how I'd like it. I will have to decide if I want to keep this package long-term in my app. For now though, it gets the job done and display the rock type when on mouse hover.
