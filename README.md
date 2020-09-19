@@ -228,3 +228,19 @@ I was considering removing Material-ui because I didn't like the app bar at firs
 There may be some other aspects of material UI I do want to use besides the app bar, making it a more valuable package than I first thought. I noticed there is a grid component in a different React app i sampled. I am going to try to impliment this grid so I can have the Map and my Description text side by side.
 
 https://material-ui.com/components/grid/
+
+<h3>Deploying the app with Surge</h3>
+
+I am going to try and deploy the app to the web using Surge.
+
+https://surge.sh/help/getting-started-with-surge
+
+In order to get surge to work I had to:
+
+npm run build
+
+and then run surge from that build directory
+
+Success..!:
+
+http://freezing-lettuce.surge.sh/
