@@ -183,7 +183,7 @@ The info box package successfully works when I set it up like so:
 
 ```
 const layerId = "geology-layer";
-const formatter = properties => properties ? `<b>Name:</b> ${properties['G_ROCK_TYP']}` : '';
+const formatter = properties => properties ? `<b>Rock Type:</b> ${properties['G_ROCK_TYP']}` : '';
 const infoboxOptions: MapboxInfoBoxOptions = {
     layerId,
     formatter
@@ -192,3 +192,28 @@ map.addControl(new MapboxInfoBoxControl(infoboxOptions));
 ```
 
 A react project was the ideal application to utilize a package like infobox-control. It basically does what I want but the styling is defintely not how I'd like it. I will have to decide if I want to keep this package long-term in my app. For now though, it gets the job done and display the rock type when on mouse hover.
+
+Hooks - State:
+
+The official Mapbox react examples make use of state hooks to monitor and execute changes to map layer options:
+
+https://reactjs.org/docs/hooks-state.html
+
+```
+const [active, setActive] = useState(options[0]);
+const [map, setMap] = useState(null);
+```
+
+Hooks - Effect:
+
+Mapbox uses this for rendering the initial map, as well as executing the paint() function which will restyle a layer.
+
+https://reactjs.org/docs/hooks-effect.html
+
+These hooks seem to replace the old paradigm of mounting components. Components are still relevant but not necessary in all cases.
+
+"Instead of thinking in terms of “mounting” and “updating”, you might find it easier to think that effects happen “after render”. React guarantees the DOM has been updated by the time it runs the effects."
+
+Cleaning up effects:
+
+"For example, we might want to set up a subscription to some external data source. In that case, it is important to clean up so that we don’t introduce a memory leak!"

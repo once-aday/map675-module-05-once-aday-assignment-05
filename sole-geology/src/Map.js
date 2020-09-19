@@ -30,7 +30,7 @@ const Map = () => {
     map.addControl(new mapboxgl.GeolocateControl(), 'top-left')
 
     const layerId = "geology-layer";
-    const formatter = properties => properties ? `<b>Name:</b> ${properties['G_ROCK_TYP']}` : '';
+    const formatter = properties => properties ? `<b>Rock Type:</b> ${properties['G_ROCK_TYP']}` : '';
     const infoboxOptions: MapboxInfoBoxOptions = {
         layerId,
         formatter
