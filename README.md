@@ -8,7 +8,7 @@ https://webpack.js.org/guides/
 
 I'm saving the webpack-demo project in my https://github.com/newmapsplus/map675-module-05-once-aday repository.
 
-<h3>Installing custom fonts</h3>
+<h4>Installing custom fonts</h4>
 
 In order to use a ttf type font I had to specifically use it's format handler within my style.css file:
 
@@ -137,7 +137,7 @@ I am going to try taking what I learned from the mapbox examples above and creat
 
 https://reactjs.org/docs/create-a-new-react-app.html#create-react-app
 
-Earlier this week I was experimenting with the mapbox iOS SDK and was able to get a basic geologic map and tap on feature functionality working on my iPhone. Here I'll try to replicate and improve upon that experience in React.
+Earlier this week I was experimenting with the mapbox iOS SDK and was able to get a basic geologic map and tap on feature functionality working on my iPhone. Here I'll try to create a companion React web page with similar functionality to the app. It will also serve to encourage people to download the app.
 
 <h4>Initial Setup</h4>
 `npx create-react-app sole-geology`
@@ -217,3 +217,14 @@ These hooks seem to replace the old paradigm of mounting components. Components 
 Cleaning up effects:
 
 "For example, we might want to set up a subscription to some external data source. In that case, it is important to clean up so that we don’t introduce a memory leak!"
+
+<h3>Material-ui</h3>
+
+I experimented with material-ui and implimented a header App Bar in the  'material-ui top app bar and new page design' commit.
+
+I am going to remove it though because I don't think the design suits this react web site/app very well.
+
+<h4>Material Grids</h4>
+There may actually be some other aspects of material UI I do want to use. I noticed there is a grid component in a different React app i sampled. I am going to try to impliment this grid so I can have the Map and my Description text side by side.
+
+https://material-ui.com/components/grid/
