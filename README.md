@@ -222,9 +222,9 @@ Cleaning up effects:
 
 I experimented with material-ui and implimented a header App Bar in the  'material-ui top app bar and new page design' commit.
 
-I am going to remove it though because I don't think the design suits this react web site/app very well.
+I was considering removing Material-ui because I didn't like the app bar at first but ended up keeping it..
 
 <h4>Material Grids</h4>
-There may actually be some other aspects of material UI I do want to use. I noticed there is a grid component in a different React app i sampled. I am going to try to impliment this grid so I can have the Map and my Description text side by side.
+There may be some other aspects of material UI I do want to use besides the app bar, making it a more valuable package than I first thought. I noticed there is a grid component in a different React app i sampled. I am going to try to impliment this grid so I can have the Map and my Description text side by side.
 
 https://material-ui.com/components/grid/
