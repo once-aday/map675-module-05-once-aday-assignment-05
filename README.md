@@ -367,3 +367,116 @@ control.mapView.showsUserHeadingIndicator = true
 For info-box styling harder corners, and a drop shadow might look nice.
 
 For the rock descriptions I will want to update the underlying GeoJSON to have descriptions for each rock type, as well as an attribute linking to an external URL for the rock's Image. I will see if I can link to the wikipedia URLs for this.
+
+For the rock descriptions; I will need to go rock by rock and grab the descriptions and images from wikipedia. I'll add them to a spread sheet so that I can maintain a good database of this information. Then later if I either update the GeoJSON, or the description data, I can do a simple join by attribute to get that information back into the layer.
+
+<a href="url"><img src="images/ss5.png" align="left" height="600" width="600" ></a>
+
+Notes on using data from Wikipedia:
+
+https://en.wikipedia.org/wiki/Wikipedia:Reusing_Wikipedia_content
+
+-	It seems like I can use Wikipedia Text as long as I provide a hyperlink to a stable online copy (the Wikipedia page itself)
+-	Must contain a licensing notice: Stating that the work is released under CC-BY-SA and either a) a hyperlink or URL to the text of the license or b) a copy of the license. For this purpose, a suitable URL is: http://creativecommons.org/licenses/by-sa/3.0/
+
+Because of the above rules I am also going to include a wikipedia_url attribute in my dataset.
+
+Eventually I'll probably want some sort of API to automatically pull the data from Wikipedia or some other source. At the very least link to wikipedia.
+
+Potentially I could also contact a publisher of a geologic dictionary and ask to partner with them on this..?
+
+Now that the .csv is all filled out I need to join it's data to my geojson file. Both the .csv and the GeoJSON have their rock type's identified so I should be able to join using that as a primary key.
+
+Mapshaper is a great tool for this job:
+
+https://github.com/mbloch/mapshaper/wiki/Command-Reference#-join
+
+```
+Devins-MBP:data devin$ mapshaper all_geology_num.json -join rock_type_legend.csv keys=G_ROCK_TYP,G_ROCK_TYP fields=descr
+iption,image_url,wikipedia_url -o geology_descrip.json
+[join] Auto-detected number field: color
+[join] Joined data from 32 source records to 53 target records
+[o] Wrote geology_descrip.json
+```
+
+I am only keeping the fields from the .csv that are not already in the GeoJSON file (all_geology_num.json).
+
+```
+Devins-MBP:data devin$ mapshaper geology_descrip.json -info
+[info]
+==================================================
+Layer:    geology_descrip
+--------------------------------------------------
+
+Type:     polygon
+Records:  53
+Bounds:   -124.56675190889058,41.995582402000025,-123.70206596799994,43.611462489000075
+CRS:      +proj=longlat +datum=WGS84
+Source:   geology_descrip.json
+
+Attribute data
+---------------+----------------------------------
+ Field         | First value
+---------------+----------------------------------
+ color         | 0
+ description   | 'Basalt is a mafic extrusive igneous rock formed from the rapid cooling of lava rich in magnesium and i
+ron[5] exposed at or very near the surface of a terrestrial planet or a moon.[6] More than 90% of all volcanic rock on E
+arth is basalt,[7] and the eruption of basalt lava is observed by geologists at about 20 volcanoes per year.[8]'
+ G_ROCK_TYP    | 'basalt'
+ image_url     | 'https://en.wikipedia.org/wiki/Basalt#/media/File:Szentgy%C3%B6rgyhegy03.jpg'
+ wikipedia_url | 'https://en.wikipedia.org/wiki/Basalt'
+---------------+----------------------------------
+```
+
+Next I will upload this to mapbox and replace the old dataset. After that I should have access to all of the new rock description and image data.
+
+Previously the iOS sheet had the hardcoded Dacite description:
+
+```
+.sheet(isPresented: self.$showingResultDetail) {
+                            selectionResultDetail(descriptionText: "Dacite ( /ˈdeɪsaɪt/) is an igneous, volcanic rock. It has an aphanitic to porphyritic texture and is intermediate in composition between andesite and rhyolite. The word dacite comes from Dacia, a province of the Roman Empire which lay between the Danube River and Carpathian Mountains (now modern Romania and Moldova) where the rock was first described.", selectionName: self.currentSelectionValue)
+                            .background(Color.orange)
+```
+
+Now I will try and dynamically pull that information from the GeoJSON Tileset hosted on mapbox.
+
+First I need to update the geologyModel to handle additional variables for the new attributes:
+
+```
+  ...
+@Published var selectedGeologyDescription:String
+@Published var selectedGeologyImageURL:String
+    ...
+
+func updateSelectedGeology(selectedGeology:String, selectedGeologyDescription:String, selectedGeologyImageURL:String)
+    {
+        self.selectedGeology = selectedGeology
+        self.selectedGeologyDescription = selectedGeologyDescription
+        self.selectedGeologyImageURL = selectedGeologyImageURL
+        print("Updated Selected Geology To: \(self.selectedGeology)")
+        self.activeSelection = true
+    }
+```
+
+I also need to update the Gesture Recognizer to pull the new values.
+
+```
+// Get the name of the selected rock.
+        if let feature = features.first, let value = feature.attribute(forKey: "G_ROCK_TYP") as? String, let value2 = feature.attribute(forKey: "description") as? String, let value3 = feature.attribute(forKey: "image_url") as? String {
+            print(value)
+            control.geologyFeatureModel.updateSelectedGeology(selectedGeology: value, selectedGeologyDescription: value2, selectedGeologyImageURL: value3)
+```
+
+The new .sheet() code should now work as:
+
+```
+.sheet(isPresented: self.$showingResultDetail) {
+                            selectionResultDetail(descriptionText: self.model.selectedGeologyDescription, selectionName: self.currentSelectionValue, selectionImageURL: self.model.selectedGeologyImageURL)
+                            .background(Color.orange)
+```
+
+<a href="url"><img src="images/ss6.png" align="left" height="288" width="150" ></a>
+
+Success! This dynamically generates the Description AND Image from the mapbox tileset.
+
+Now all that is left for this batch of features is to make the UI look better... I'll get to that eventually!
