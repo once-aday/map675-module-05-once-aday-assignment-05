@@ -283,6 +283,19 @@ This app has three main views:
 
  The map is initiated with `var soleMap = MapView()` and then executed in the view by calling `self.soleMap`.
 
+ ```
+ struct ContentView: View {
+//    @State var selectionResultWindowActive = false
+    @EnvironmentObject var geologyFeatureModel:geologyFeatureModel
+    var soleMap = MapView()
+
+    var body: some View {
+        GeometryReader { geometry in
+            ZStack() {
+                self.soleMap
+                VStack() {
+```
+
  soleMap is an instance of MapView() which you can find in the MapView.swift file.
 
  MapView.swift holds most of the functions that are called when the user interacts with the map. Including the Gesture Recognizer which will detect taps to the map, then run a function determine which rock type is selected, and update the info-box (aka SelectionResultWindow) with that rock type:
