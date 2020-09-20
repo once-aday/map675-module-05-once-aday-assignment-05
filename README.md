@@ -261,8 +261,9 @@ Right now the sheet is hardcoded to show details on the rock "Dacite" and an ima
 
 I am hoping I can render all of this information from the GeoJSON Dataset and avoid having to make any sort of API or database to maintain this information. Potentially I could host all of this out of Mapbox Studio. This would simplify things a great deal so I wouldn't need a backend to worry about.
 
-<a href="url"><img src="images/ss1.png" align="left" height="48" width="48" ></a>
+| <a href="url"><img src="images/ss1.png" align="left" height="288" width="150" ></a> |
+<a href="url"><img src="images/ss2.png" align="left" height="288" width="150" ></a> |
+<a href="url"><img src="images/ss3.png" align="left" height="288" width="150" ></a> |
 
-![App View - Entry](images/ss1.png) ![App View - Tap](images/ss2.png) ![App View - Detail](images/ss3.png)
 
 The design is pretty unruly, I am going to see how difficult it would be to use Material-ui within the iOS app, and replace the card view I have with a material design card..
