@@ -260,6 +260,7 @@ I worked on the app last week and have it generating an artistically wild lookin
 Right now the sheet is hardcoded to show details on the rock "Dacite" and an image of the rock.
 
 I am hoping I can render all of this information from the GeoJSON Dataset and avoid having to make any sort of API or database to maintain this information. Potentially I could host all of this out of Mapbox Studio. This would simplify things a great deal so I wouldn't need a backend to worry about.
+<img src="images/ss1.png" alt="drawing" style="width:50%;height:50%"/>
 
 <img src="images/ss1.png" width="50%" height="50%"></img>
 ![App View - Entry](images/ss1.png) ![App View - Tap](images/ss2.png) ![App View - Detail](images/ss3.png)
