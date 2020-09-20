@@ -370,7 +370,7 @@ For the rock descriptions I will want to update the underlying GeoJSON to have d
 
 For the rock descriptions; I will need to go rock by rock and grab the descriptions and images from wikipedia. I'll add them to a spread sheet so that I can maintain a good database of this information. Then later if I either update the GeoJSON, or the description data, I can do a simple join by attribute to get that information back into the layer.
 
-<a href="url"><img src="images/ss5.png" align="left" height="600" width="600" ></a>
+<a href="url"><img src="images/ss5.png" align="left" height="400" width="400" ></a>
 
 Notes on using data from Wikipedia:
 
@@ -479,4 +479,4 @@ The new .sheet() code should now work as:
 
 Success! This dynamically generates the Description AND Image from the mapbox tileset.
 
-Now all that is left for this batch of features is to make the UI look better... I'll get to that eventually!
+Now all that is left for this batch of features is to make the UI look better... I'll get to that eventually, I'm sure!
