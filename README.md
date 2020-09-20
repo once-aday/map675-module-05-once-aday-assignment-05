@@ -251,7 +251,7 @@ I implemented the styled component button example. It's a red gradient button th
 
 https://material-ui.com/styles/basics/
 
-<h3>SoleGeology iOS App</h3>
+<h2>Create iOS App - SoleGeology</h2>
 
 This React web page was modeled as a companion to an app that similarly will identify basic geology for the user.
 
@@ -262,8 +262,6 @@ Right now the sheet is hardcoded to show details on the rock "Dacite" and an ima
 I am hoping I can render all of this information from the GeoJSON Dataset and avoid having to make any sort of API or database to maintain this information. Potentially I could host all of this out of Mapbox Studio. This would simplify things a great deal so I wouldn't need a backend to worry about.
 
 
-![App View - Entry](images/ss1.png)
-![App View - Tap](images/ss2.png)
-![App View - Detail](images/ss3.png)
+|![App View - Entry](images/ss1.png) | ![App View - Tap](images/ss2.png) | ![App View - Detail](images/ss3.png) |
 
-The design is pretty unruly, I am going to see how difficult it would be to use Material-ui within the iOS app, and replace the card view I Have with a material design card..
+The design is pretty unruly, I am going to see how difficult it would be to use Material-ui within the iOS app, and replace the card view I have with a material design card..
