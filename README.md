@@ -271,3 +271,74 @@ The design is pretty unruly, I am going to see how difficult it would be to use 
 https://github.com/material-components/material-components-ios/tree/develop/components
 
 After looking through the material design ios code base I think I will hold off on trying to add it to the App, since I already have a working card-like display I will try to restyle it on my own using native styling tools. It's probably better to not overcomplicate the app at this point!
+
+<h3>iOS App General Structure</h3>
+
+This app has three main views:
+ - The Map
+ - The Info-box when you tap on a rock type
+ - The Sheet that pops-up when you tap on the info-box.
+
+ ContentView.swift is the "head" of the monster. All other views are children of this view.
+
+ The map is initiated with `var soleMap = MapView()` and then executed in the view by calling `self.soleMap`.
+
+ soleMap is an instance of MapView() which you can find in the MapView.swift file.
+
+ MapView.swift holds most of the functions that are called when the user interacts with the map. Including the Gesture Recognizer which will detect taps to the map, then run a function determine which rock type is selected, and update the info-box (aka SelectionResultWindow) with that rock type:
+
+ ```
+ @objc @IBAction func handleMapTap(sender: UITapGestureRecognizer) {
+        // Get the CGPoint where the user tapped.
+            let spot = sender.location(in: control.mapView)
+            print(spot)
+
+        // Access the features at that point within the state layer.
+            let features = control.mapView.visibleFeatures(at: spot, styleLayerIdentifiers: Set(["geology-layer"]))
+
+        // Get the name of the selected rock.
+        if let feature = features.first, let value = feature.attribute(forKey: "G_ROCK_TYP") as? String {
+            print(value)
+            control.geologyFeatureModel.updateSelectedGeology(selectedGeology: value)
+//            control.geologyFeatureModel.updateSelectedGeology(selectedGeology: value)
+            } else {
+                print("No Feature found")
+            control.geologyFeatureModel.activeSelection = false
+            }
+        }
+```
+
+the geologyFeatureModel is the other piece to the puzzle. This model is an observable object that keeps track of which rock type is selected. When the model is initiated the selectedGeology variable is a blank string. When a map tap occurs and a geologic rock type is found the selectedGeology variable is updated to be that rock type:
+
+```
+class geologyFeatureModel:ObservableObject {
+    @Published var selectedGeology:String
+    @Published var activeSelection:Bool
+
+    init() {
+            selectedGeology = ""
+            activeSelection = false
+        }
+    func updateSelectedGeology(selectedGeology:String)
+    {
+        self.selectedGeology = selectedGeology
+        print("Updated Selected Geology To: \(self.selectedGeology)")
+        self.activeSelection = true
+    }
+}
+```
+
+Because the geologyFeatureModel is an environment variable, intially declared with ContentView() it's value is shared throughout the entire app. This allows the app to know what rock type is selected at all times and makes it simpler to update things like the rock type description sheet. Because the app is fairly simple sharing this environment variable, more or less globally, overworking the CPU or memory shouldn't be much of a concern.
+
+```
+struct ContentView: View {
+//    @State var selectionResultWindowActive = false
+    @EnvironmentObject var geologyFeatureModel:geologyFeatureModel
+    ....
+```
+
+<h4>User Location, Info-box Styling, and Rock Descriptions/Images</h4>
+
+These are the three main new features I am going to be implementing next..
+
+Adding user location is an essential aspect of the app so I'll start there.
