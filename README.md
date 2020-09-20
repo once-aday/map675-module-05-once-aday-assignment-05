@@ -507,3 +507,32 @@ layer.fillColor = NSExpression(format: "mgl_interpolate:withCurveType:parameters
 ```
 
 The stops dictionary looks at the color attribute which is an attribute in the geoJSON in the map tiles. I can go through each code and determine an appropriate color code for it's associated rock type. There are about 33 rock types in my current dataset (which is only two counties in Oregon), so it will take some effort to find a good unique color value for each rock type.
+
+I am trying to figure out how to use the MGL_STOPS with a dictionary of values. I keep getting an error when I include a dictionary of match possibilities outside of the function. When it is all self contained it works.
+
+https://docs.mapbox.com/ios/api/maps/6.0.0/predicates-and-expressions.html#code-mgl_match-code
+
+works:
+
+```
+layer.fillColor = NSExpression(format: "MGL_MATCH(G_ROCK_TYP, 'basalt', %@, 'mixed lithologies', %@, 'mixed grained sediments', %@, %@)", UIColor.orange, UIColor.red, UIColor.yellow, defaultColor)
+```
+doesn't work:
+
+```
+let stopsRockType = ["basalt": UIColor.yellow,
+                                 "mixed lithologies": UIColor.yellow,
+                                 "mixed grained sediments": UIColor.yellow,
+                                 "slope mudstone": UIColor.yellow
+            ]
+
+  layer.fillColor = NSExpression(format: "MGL_MATCH(G_ROCK_TYP, %@, %@)", stopsRockType, defaultColor)
+```
+
+It needs some fourth parameter apparently:
+
+Thread 1: Exception: "Invalid property value: Expected at least 4 arguments, but found only 3."
+
+I may need to submit a question to mapbox/stack exchange.
+
+For now I fixed a bug with duplicate color codes for some identical rock types. So the map should look better.
