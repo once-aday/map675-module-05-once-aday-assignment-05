@@ -285,7 +285,6 @@ This app has three main views:
 
  ```
  struct ContentView: View {
-//    @State var selectionResultWindowActive = false
     @EnvironmentObject var geologyFeatureModel:geologyFeatureModel
     var soleMap = MapView()
 
@@ -294,6 +293,7 @@ This app has three main views:
             ZStack() {
                 self.soleMap
                 VStack() {
+                  ......
 ```
 
  soleMap is an instance of MapView() which you can find in the MapView.swift file.
@@ -321,7 +321,7 @@ This app has three main views:
         }
 ```
 
-the geologyFeatureModel is the other piece to the puzzle. This model is an observable object that keeps track of which rock type is selected. When the model is initiated the selectedGeology variable is a blank string. When a map tap occurs and a geologic rock type is found the selectedGeology variable is updated to be that rock type:
+The geologyFeatureModel is the other piece to the puzzle. This model is an observable object that keeps track of which rock type is selected. When the model is initiated the selectedGeology variable is a blank string. When a map tap occurs and a geologic rock type is found (using the model's updateSelectedGeology() function) the selectedGeology variable is updated to be that rock type:
 
 ```
 class geologyFeatureModel:ObservableObject {
@@ -341,11 +341,10 @@ class geologyFeatureModel:ObservableObject {
 }
 ```
 
-Because the geologyFeatureModel is an environment variable, intially declared with ContentView() it's value is shared throughout the entire app. This allows the app to know what rock type is selected at all times and makes it simpler to update things like the rock type description sheet. Because the app is fairly simple sharing this environment variable, more or less globally, overworking the CPU or memory shouldn't be much of a concern.
+Because the geologyFeatureModel is an environment variable, initially declared with ContentView() it's value is shared throughout the entire app. This allows the app to know what rock type is selected at all times and makes it simpler to update things like the rock type description sheet. Because the app is fairly simple sharing this environment variable, more or less globally, overworking the CPU or memory shouldn't be much of a concern.
 
 ```
 struct ContentView: View {
-//    @State var selectionResultWindowActive = false
     @EnvironmentObject var geologyFeatureModel:geologyFeatureModel
     ....
 ```
@@ -355,3 +354,16 @@ struct ContentView: View {
 These are the three main new features I am going to be implementing next..
 
 Adding user location is an essential aspect of the app so I'll start there.
+
+This was as simple as adding these two lines of code into MapView.swift:
+
+<a href="url"><img src="images/ss4.png" align="left" height="288" width="150" ></a>
+
+```
+control.mapView.userTrackingMode = .follow
+control.mapView.showsUserHeadingIndicator = true
+```
+
+For info-box styling harder corners, and a drop shadow might look nice.
+
+For the rock descriptions I will want to update the underlying GeoJSON to have descriptions for each rock type, as well as an attribute linking to an external URL for the rock's Image. I will see if I can link to the wikipedia URLs for this.
