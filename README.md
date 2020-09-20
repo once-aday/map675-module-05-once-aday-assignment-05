@@ -357,7 +357,7 @@ Adding user location is an essential aspect of the app so I'll start there.
 
 This was as simple as adding these two lines of code into MapView.swift:
 
-<a href="url"><img src="images/ss4.png" align="left" height="288" width="150" ></a>
+<a href="url"><img src="images/ss4.png" align="left" height="200" width="150" ></a>
 
 ```
 control.mapView.userTrackingMode = .follow
