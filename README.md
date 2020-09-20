@@ -476,7 +476,21 @@ The new .sheet() code should now work as:
 ```
 
 <a href="url"><img src="images/ss6.png" align="left" height="288" width="150" ></a>
+<a href="url"><img src="images/ss7.png" align="left" height="288" width="150" ></a>
 
 Success! This dynamically generates the Description AND Image from the mapbox tileset.
 
 Now all that is left for this batch of features is to make the UI look better... I'll get to that eventually, I'm sure!
+
+Uh oh, I forgot to impliment the data source information using the wikipedia_url attribute. I should be able to add the wikipedia URL as a footer in the sheet.
+
+Following the same steps as above I added the new attribute to the different views and the model. Now I below the description in the sheet I can create a basic display of the source information.
+
+```
+Spacer()
+                HStack() {
+                    Text("Source: ")
+                    Text(self.selectionSourceURL)
+                }
+                .padding()
+```
