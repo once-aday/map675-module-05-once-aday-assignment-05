@@ -13,6 +13,25 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 
+import { styled } from '@material-ui/core/styles';
+
+const MyButton = styled(({ color, ...other }) => <Button {...other} />)({
+  background: (props) =>
+    props.color === 'red'
+      ? 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)'
+      : 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
+  border: 0,
+  borderRadius: 3,
+  boxShadow: (props) =>
+    props.color === 'red'
+      ? '0 3px 5px 2px rgba(255, 105, 135, .3)'
+      : '0 3px 5px 2px rgba(33, 203, 243, .3)',
+  color: 'white',
+  height: 48,
+  padding: '0 30px',
+  margin: 8,
+});
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -71,12 +90,20 @@ function App() {
           <Map />
         </Grid>
         <Grid item xs={6} sm={3}>
-          <Paper className={classes.paper}>Geology at Your Fingertips</Paper>
+          <Paper className={classes.paper}>You stepped in what?!</Paper>
         </Grid>
         <Grid item xs={6} sm={3}>
-            <Paper className={classes.paper}>Available on iOS.</Paper>
+            <Paper className={classes.paper}>Geology at Your Fingertips</Paper>
           </Grid>
+
       </Grid>
+      <Grid container
+      justify={'center'}
+      spacing={3}>
+      <Grid item xs={6} sm={3}>
+          <MyButton color="red">Available on iOS.</MyButton>
+        </Grid>
+        </Grid>
       </body>
 
     </div>
