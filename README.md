@@ -482,6 +482,19 @@ Success! This dynamically generates the Description AND Image from the mapbox ti
 
 Now all that is left for this batch of features is to make the UI look better... I'll get to that eventually, I'm sure!
 
+Oh no! I forgot to implement the data source information using the wikipedia_url attribute. I should be able to add the wikipedia URL as a footer in the sheet.
+
+Following the same steps as above I added the new attribute to the different views and the model. Now below the description in the sheet I can create a basic display of the source information.
+
+```
+Spacer()
+                HStack() {
+                    Text("Source: ")
+                    Text(self.selectionSourceURL)
+                }
+                .padding()
+```
+
 I also desperately need to color the rocks on the map better. Right now it is simple scaling randomly between three different colors:
 
 ```
@@ -494,16 +507,3 @@ layer.fillColor = NSExpression(format: "mgl_interpolate:withCurveType:parameters
 ```
 
 The stops dictionary looks at the color attribute which is an attribute in the geoJSON in the map tiles. I can go through each code and determine an appropriate color code for it's associated rock type. There are about 33 rock types in my current dataset (which is only two counties in Oregon), so it will take some effort to find a good unique color value for each rock type.
-
-Oh no! I forgot to implement the data source information using the wikipedia_url attribute. I should be able to add the wikipedia URL as a footer in the sheet.
-
-Following the same steps as above I added the new attribute to the different views and the model. Now I below the description in the sheet I can create a basic display of the source information.
-
-```
-Spacer()
-                HStack() {
-                    Text("Source: ")
-                    Text(self.selectionSourceURL)
-                }
-                .padding()
-```
