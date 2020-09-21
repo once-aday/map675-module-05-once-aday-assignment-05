@@ -3,8 +3,8 @@
 
 ## Table of Contents
 - [Webpack, React and Map Experimentation](##webpack-react-and-map-experimentation)
-- [Create React App - Sole Geology](#-create-react-app---sole-geology)
-- [Create iOS App - Sole Geology](#create-ios-app---solegeology)
+- [Create React App - Sole Geology](##-create-react-app---sole-geology)
+- [Create iOS App - Sole Geology](##create-ios-app---solegeology)
 
 ## Webpack, React and Map Experimentation
 
@@ -137,7 +137,7 @@ So are the App.js and Map.js calls to render the map.
 App.js
 Map.js
 
-<h2> Create React App - Sole Geology</h2>
+## Create React App - Sole Geology
 
 I am going to try taking what I learned from the mapbox examples above and create an app to display Oregon Geology in a React app, using the "create react-app" starter from:
 
@@ -257,7 +257,7 @@ I implemented the styled component button example. It's a red gradient button th
 
 https://material-ui.com/styles/basics/
 
-<h2>Create iOS App - SoleGeology</h2>
+## Create iOS App - SoleGeology
 
 This React web page was modeled as a companion to an app that similarly will identify basic geology for the user.
 
@@ -355,7 +355,7 @@ struct ContentView: View {
     ....
 ```
 
-## User Location, Info-box Styling, and Rock Descriptions/Images
+<h2> User Location, Info-box Styling, and Rock Descriptions/Images </h2>
 
 These are the three main new features I am going to be implementing next..
 
