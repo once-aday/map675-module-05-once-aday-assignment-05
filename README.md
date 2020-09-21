@@ -357,7 +357,7 @@ struct ContentView: View {
     ....
 ```
 
-<h2> User Location, Info-box Styling, and Rock Descriptions/Images </h2>
+<h3> User Location, Info-box Styling, and Rock Descriptions/Images </h3>
 
 These are the three main new features I am going to be implementing next..
 
