@@ -2,9 +2,9 @@
 
 
 ## Table of Contents
-- Webpack, React and Map Experimentation[##webpack-react-and-map-experimentation]
-- Create React App - Sole Geology[#-create-react-app---sole-geology]
-- Create iOS App - SoleGeology[#create-ios-app---solegeology]
+- [Webpack, React and Map Experimentation](##webpack-react-and-map-experimentation)
+- [Create React App - Sole Geology](#-create-react-app---sole-geology)
+- [Create iOS App - SoleGeology](#create-ios-app---solegeology)
 
 ## Webpack, React and Map Experimentation
 
