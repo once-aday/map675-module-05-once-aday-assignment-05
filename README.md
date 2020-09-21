@@ -7,6 +7,7 @@
 - [Create iOS App - Sole Geology](#create-ios-app---solegeology)
 
 
+
 ## Webpack, React and Map Experimentation
 
 I'm beginning by getting more familiar with webpack. Below are some notes as I am going through the process of building an app according to starter documentation..
