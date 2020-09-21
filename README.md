@@ -4,7 +4,7 @@
 ## Table of Contents
 - [Webpack, React and Map Experimentation](##webpack-react-and-map-experimentation)
 - [Create React App - Sole Geology](#-create-react-app---sole-geology)
-- [Create iOS App - SoleGeology](#create-ios-app---solegeology)
+- [Create iOS App - Sole Geology](#create-ios-app---solegeology)
 
 ## Webpack, React and Map Experimentation
 
@@ -355,7 +355,7 @@ struct ContentView: View {
     ....
 ```
 
-<h4>User Location, Info-box Styling, and Rock Descriptions/Images</h4>
+## User Location, Info-box Styling, and Rock Descriptions/Images
 
 These are the three main new features I am going to be implementing next..
 
@@ -500,6 +500,8 @@ Spacer()
                 }
                 .padding()
 ```
+
+<h3>Experimenting with Layer Coloring</h3>
 
 I also desperately need to color the rocks on the map better. Right now it is simple scaling randomly between three different colors:
 
